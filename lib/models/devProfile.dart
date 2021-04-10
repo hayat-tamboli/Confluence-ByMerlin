@@ -6,13 +6,14 @@ class UserProfile {
   String name;
   String profileImage;
   String emailId;
+  List skills;
 
   UserProfile(
       {this.userId, this.username, this.name, this.profileImage, this.emailId});
 
   UserProfile.loadUser(this.userId, this.name, this.emailId);
 
-  UserProfile.newuser(String userId,String name,String emailId) {
+  UserProfile.newuser(String userId, String name, String emailId) {
     this.userId = userId;
     this.name = name;
     this.profileImage = "";
@@ -52,8 +53,14 @@ class UserProfile {
         profileImage: data['profileImage'],
         emailId: data['emailId']);
   }
-}
 
+  addSkills(List skills) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc("")
+        .update({"skills": skills});
+  }
+}
 
 setSearchParam(String username) {
   List<String> userSearchList = [];

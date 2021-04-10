@@ -1,16 +1,11 @@
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:merlin/auth/registerPage.dart';
 import 'package:merlin/mainapp.dart';
 import 'package:merlin/services/authentication_service.dart';
-import 'package:merlin/auth/forgotPassword.dart';
-import 'package:merlin/getGithubUsers.dart';
-import 'package:merlin/getLinkedInUsers.dart';
 import 'package:merlin/widgets/inputBox.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
-import 'package:merlin/widgets/skillsSearchBox.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
