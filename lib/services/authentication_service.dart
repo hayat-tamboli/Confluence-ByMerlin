@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:merlin/models/devProfile.dart';
+import 'package:merlin/utils/Constants.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
@@ -12,8 +13,10 @@ class AuthenticationService {
 
   Future<String> signIn({String email, String password}) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+      final UserCredential authResult = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+      final User user = authResult.user;
+      Constants.prefs.setString("userId", user.uid);
       return "Signed in";
     } on FirebaseAuthException catch (e) {
       return e.message;
@@ -30,6 +33,8 @@ class AuthenticationService {
           .collection('users')
           .doc(user.uid)
           .set(UserProfile.newuser(user.uid, hi, user.email).toJson());
+      Constants.prefs.setString("userId", user.uid);
+      Constants.prefs.setString("name", user.displayName);
       return "Signed up";
     } on FirebaseAuthException catch (e) {
       return e.message;

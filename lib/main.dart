@@ -4,14 +4,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:merlin/services/authentication_service.dart';
 import 'package:merlin/auth/mainAuthPage.dart';
 import 'package:merlin/homePage.dart';
-import 'package:merlin/mainapp.dart';
 import 'package:merlin/signInPage.dart';
+import 'package:merlin/utils/Constants.dart';
 import 'package:merlin/utils/theme_config.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Constants.prefs = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 
