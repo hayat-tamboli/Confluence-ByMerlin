@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:merlin/utils/Constants.dart';
 
 class UserProfile {
   String userId;
@@ -53,13 +54,6 @@ class UserProfile {
         profileImage: data['profileImage'],
         emailId: data['emailId']);
   }
-
-  addSkills(List skills) async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc("")
-        .update({"skills": skills});
-  }
 }
 
 setSearchParam(String username) {
@@ -70,4 +64,11 @@ setSearchParam(String username) {
     userSearchList.add(temp);
   }
   return userSearchList;
+}
+
+addSkills(List skills) async {
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc(Constants.prefs.getString('userId'))
+      .update({"skills": skills});
 }
