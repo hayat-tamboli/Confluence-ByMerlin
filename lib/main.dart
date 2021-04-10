@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:merlin/authentication_service.dart';
 import 'package:merlin/homePage.dart';
+import 'package:merlin/mainapp.dart';
 import 'package:merlin/signInPage.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: AuthenticationWrapper(),
+        home: MainApp(),
+        // home: AuthenticationWrapper(),
       ),
     );
   }
