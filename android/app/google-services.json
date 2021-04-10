@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "162778344753",
+    "project_id": "merlin-c4fa7",
+    "storage_bucket": "merlin-c4fa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162778344753:android:fb32865e3439d238cdd410",
+        "android_client_info": {
+          "package_name": "com.example.merlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162778344753-chv1blqh7sv64ulpdrtavqnitte32q6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDesff5JJMn6vxq6nTkILn9pXsnTIREw48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162778344753-chv1blqh7sv64ulpdrtavqnitte32q6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
