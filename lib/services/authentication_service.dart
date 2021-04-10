@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:merlin/models/devProfile.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
@@ -20,8 +22,14 @@ class AuthenticationService {
 
   Future<String> signUp({String email, String password}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      String hi = " ";
+      final UserCredential authResult = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      final User user = authResult.user;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set(UserProfile.newuser(user.uid, hi, user.email).toJson());
       return "Signed up";
     } on FirebaseAuthException catch (e) {
       return e.message;

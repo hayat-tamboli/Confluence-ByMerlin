@@ -1,7 +1,7 @@
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
-import 'package:merlin/authentication_service.dart';
+import 'package:merlin/services/authentication_service.dart';
 import 'package:merlin/forgotPassword.dart';
 import 'package:merlin/getGithubUsers.dart';
 import 'package:merlin/getLinkedInUsers.dart';

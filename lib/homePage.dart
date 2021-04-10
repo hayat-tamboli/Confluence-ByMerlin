@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:merlin/authentication_service.dart';
+import 'package:merlin/services/authentication_service.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
