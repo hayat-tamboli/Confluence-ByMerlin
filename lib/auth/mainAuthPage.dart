@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:merlin/auth/registerPage.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
 
 class MainAuthPage extends StatefulWidget {
@@ -12,7 +13,12 @@ class _MainAuthPageState extends State<MainAuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0, title: Text("Confluence")),
+      appBar: AppBar(
+        title: Text(
+          "Confluence",
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        ),
+      ),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -54,7 +60,12 @@ class _MainAuthPageState extends State<MainAuthPage> {
                 children: [
                   PrimaryButton(
                     text: "Register",
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage()));
+                    },
                     padding: 40,
                     alt: false,
                   ),
