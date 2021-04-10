@@ -17,7 +17,6 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController nameController = new TextEditingController();
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
-  TextEditingController githubController = new TextEditingController();
   bool _passwordHide = true;
 
   void initState() {
@@ -69,11 +68,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           });
                         },
                       ),
-                    ),
-                    InputBox(
-                      labelText: "Github username",
-                      hintText: "hayat-tamboli",
-                      controller: githubController,
                     ),
                   ],
                 ),
