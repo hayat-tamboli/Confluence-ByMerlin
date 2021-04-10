@@ -1,16 +1,11 @@
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:merlin/auth/registerPage.dart';
 import 'package:merlin/mainapp.dart';
 import 'package:merlin/services/authentication_service.dart';
-import 'package:merlin/forgotPassword.dart';
-import 'package:merlin/getGithubUsers.dart';
-import 'package:merlin/getLinkedInUsers.dart';
 import 'package:merlin/widgets/inputBox.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
-import 'package:merlin/widgets/skillsSearchBox.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
@@ -144,24 +139,43 @@ class _SignInPageState extends State<SignInPage> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 32),
-                InputBox(
-                  controller: emailController,
-                  labelText: "Email",
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    InputBox(
+                      controller: emailController,
+                      labelText: "Email",
+                    ),
+                    InputBox(
+                      labelText: "Password",
+                      hintText: "**********",
+                      obscureText: _passwordHide,
+                      controller: passwordController,
+                      sufIcon: IconButton(
+                        icon:
+                            Icon(_passwordHide ? Feather.eye : Feather.eye_off),
+                        onPressed: () {
+                          setState(() {
+                            _passwordHide = !_passwordHide;
+                          });
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: GestureDetector(
+                        child: Text("forgot password?"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ForgotPassword()));
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                InputBox(
-                  labelText: "Password",
-                  hintText: "**********",
-                  obscureText: _passwordHide,
-                  controller: passwordController,
-                  sufIcon: IconButton(
-                    icon: Icon(_passwordHide ? Feather.eye : Feather.eye_off),
-                    onPressed: () {
-                      setState(() {
-                        _passwordHide = !_passwordHide;
-                      });
-                    },
-                  ),
-                ),
+
                 SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
