@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:merlin/auth/signInPage.dart';
 import 'package:merlin/services/authentication_service.dart';
 import 'package:merlin/widgets/inputBox.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
@@ -71,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 24),
+                SizedBox(height: 40),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,6 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               new AuthenticationService(_auth);
                           file
                               .signUp(
+                                name:nameController.text,
                                   email: emailController.text,
                                   password: passwordController.text)
                               .then((value) {
@@ -124,7 +126,13 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.secondary),
-                        recognizer: TapGestureRecognizer()..onTap = () {},
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignInPage()));
+                          },
                       ),
                     ],
                   ),
