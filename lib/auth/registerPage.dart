@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:merlin/services/authentication_service.dart';
 import 'package:merlin/widgets/inputBox.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
+
+import '../mainapp.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -14,6 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   bool _passwordHide = true;
+
   void initState() {
     setState(() => _passwordHide = true);
     super.initState();
@@ -73,6 +78,25 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     PrimaryButton(
                       alt: false,
+                      onTap: () {
+                        if (emailController.text != null &&
+                            passwordController.text != null &&
+                            nameController.text != null) {
+                          final FirebaseAuth _auth = FirebaseAuth.instance;
+                          AuthenticationService file =
+                              new AuthenticationService(_auth);
+                          file
+                              .signUp(
+                                  email: emailController.text,
+                                  password: passwordController.text)
+                              .then((value) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainApp()));
+                          });
+                        }
+                      },
                       text: "Register",
                     ),
                     SizedBox(height: 16),

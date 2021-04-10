@@ -28,6 +28,7 @@ class _MainAuthPageState extends State<MainAuthPage> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
               child: Image(
+                height: 300,
                 image: AssetImage('assets/auth page.png'),
               ),
             ),
