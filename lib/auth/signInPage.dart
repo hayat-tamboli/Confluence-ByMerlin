@@ -1,15 +1,22 @@
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:merlin/services/authentication_service.dart';
 import 'package:merlin/forgotPassword.dart';
 import 'package:merlin/getGithubUsers.dart';
 import 'package:merlin/getLinkedInUsers.dart';
+import 'package:merlin/widgets/inputBox.dart';
 import 'package:merlin/widgets/skillsSearchBox.dart';
 import 'package:provider/provider.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
   var _suggestionTextFieldController = TextEditingController();
+
   List suggestionsList = [
     "Java",
     "C++",
@@ -83,8 +90,16 @@ class SignInPage extends StatelessWidget {
     "J Lang",
     "isCobol",
   ];
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+  bool _passwordHide;
+  void initState() {
+    setState(() => _passwordHide = true);
+    super.initState();
+  }
+
   Future<String> createAlertDialog(BuildContext context) {
     TextEditingController customcontroller = TextEditingController();
     return showDialog(
@@ -111,103 +126,117 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          TextField(
-            controller: emailController,
-            decoration: InputDecoration(
-              labelText: "Email",
-            ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              InputBox(
+                controller: emailController,
+                labelText: "Email",
+              ),
+              InputBox(
+                labelText: "Password",
+                hintText: "**********",
+                obscureText: _passwordHide,
+                controller: passwordController,
+                sufIcon: IconButton(
+                  icon: Icon(_passwordHide ? Feather.eye : Feather.eye_off),
+                  onPressed: () {
+                    setState(() {
+                      _passwordHide = !_passwordHide;
+                    });
+                  },
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.read<AuthenticationService>().signIn(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      );
+                },
+                child: Text("Sign in"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.read<AuthenticationService>().signUp(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                      );
+                },
+                child: Text("Sign Up"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ForgotPassword()));
+                },
+                child: Text("Forgot Password"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => GetLinkedInUsers()));
+                },
+                child: Text("LinkedIn User List"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => GetGithubUsers()));
+                },
+                child: Text("Github User List"),
+              ),
+              Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      AutoCompleteTextField(
+                        style: TextStyle(fontSize: 16.0, color: Colors.black),
+                        clearOnSubmit: false,
+                        controller: _suggestionTextFieldController,
+                        itemSubmitted: (item) {
+                          _suggestionTextFieldController.text = item;
+                        },
+                        suggestions: suggestionsList,
+                        itemBuilder: (context, item) {
+                          return Container(
+                              padding: EdgeInsets.all(20.0),
+                              child: Row(
+                                children: <Widget>[
+                                  GestureDetector(
+                                      onTap: () {
+                                        createAlertDialog(context)
+                                            .then((onValue) {
+                                          SnackBar mySnackBar = SnackBar(
+                                              content: Text(
+                                                  "$onValue projects done"));
+                                          print(mySnackBar);
+                                        });
+                                      },
+                                      child: Text(item,
+                                          style:
+                                              TextStyle(color: Colors.black)))
+                                ],
+                              ));
+                        },
+                        itemSorter: (a, b) {
+                          return a.compareTo(b);
+                        },
+                        itemFilter: (item, query) {
+                          return item
+                              .toLowerCase()
+                              .startsWith(query.toLowerCase());
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.0))),
+                      )
+                    ],
+                  ))
+            ],
           ),
-          TextField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              labelText: "Password",
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.read<AuthenticationService>().signIn(
-                    email: emailController.text.trim(),
-                    password: passwordController.text.trim(),
-                  );
-            },
-            child: Text("Sign in"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              context.read<AuthenticationService>().signUp(
-                    email: emailController.text.trim(),
-                    password: passwordController.text.trim(),
-                  );
-            },
-            child: Text("Sign Up"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ForgotPassword()));
-            },
-            child: Text("Forgot Password"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => GetLinkedInUsers()));
-            },
-            child: Text("LinkedIn User List"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => GetGithubUsers()));
-            },
-            child: Text("Github User List"),
-          ),
-          Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  AutoCompleteTextField(
-                    style: TextStyle(fontSize: 16.0, color: Colors.black),
-                    clearOnSubmit: false,
-                    controller: _suggestionTextFieldController,
-                    itemSubmitted: (item) {
-                      _suggestionTextFieldController.text = item;
-                    },
-                    suggestions: suggestionsList,
-                    itemBuilder: (context, item) {
-                      return Container(
-                          padding: EdgeInsets.all(20.0),
-                          child: Row(
-                            children: <Widget>[
-                              GestureDetector(
-                                  onTap: () {
-                                    createAlertDialog(context).then((onValue) {
-                                      SnackBar mySnackBar = SnackBar(
-                                          content:
-                                              Text("$onValue projects done"));
-                                      print(mySnackBar);
-                                    });
-                                  },
-                                  child: Text(item,
-                                      style: TextStyle(color: Colors.black)))
-                            ],
-                          ));
-                    },
-                    itemSorter: (a, b) {
-                      return a.compareTo(b);
-                    },
-                    itemFilter: (item, query) {
-                      return item.toLowerCase().startsWith(query.toLowerCase());
-                    },
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0))),
-                  )
-                ],
-              ))
-        ],
+        ),
       ),
     );
   }

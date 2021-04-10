@@ -36,7 +36,7 @@ ThemeData buildThemeData(BuildContext context) {
     // ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: Color(0xffEFF0F6),
+      fillColor: Colors.white,
       focusColor: Colors.white,
       enabledBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(16.0)),

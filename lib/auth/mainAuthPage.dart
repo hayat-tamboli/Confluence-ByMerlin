@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:merlin/auth/registerPage.dart';
+import 'package:merlin/auth/signInPage.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
 
 class MainAuthPage extends StatefulWidget {
@@ -71,7 +72,12 @@ class _MainAuthPageState extends State<MainAuthPage> {
                   ),
                   PrimaryButton(
                     text: "Login",
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignInPage()));
+                    },
                     padding: 40,
                     alt: true,
                   ),
