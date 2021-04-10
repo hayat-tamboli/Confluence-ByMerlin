@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:merlin/services/authentication_service.dart';
+import 'package:merlin/auth/mainAuthPage.dart';
 import 'package:merlin/homePage.dart';
 import 'package:merlin/mainapp.dart';
 import 'package:merlin/signInPage.dart';
+import 'package:merlin/utils/theme_config.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -27,13 +29,12 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: MainApp(),
-        //home: AuthenticationWrapper(),
+        title: 'Confluence',
+        debugShowCheckedModeBanner: false,
+        theme: buildThemeData(context),
+        // home: MainApp(),
+        home: MainAuthPage(),
+        // home: AuthenticationWrapper(),
       ),
     );
   }
