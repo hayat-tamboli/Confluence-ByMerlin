@@ -5,6 +5,7 @@ import 'package:merlin/authentication_service.dart';
 import 'package:merlin/homePage.dart';
 import 'package:merlin/mainapp.dart';
 import 'package:merlin/signInPage.dart';
+import 'package:merlin/utils/theme_config.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -27,11 +28,8 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+        title: 'Confluence',
+        theme: buildThemeData(context),
         home: MainApp(),
         // home: AuthenticationWrapper(),
       ),
