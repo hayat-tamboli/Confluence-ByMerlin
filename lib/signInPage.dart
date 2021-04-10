@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:merlin/authentication_service.dart';
+import 'package:merlin/forgotPassword.dart';
+import 'package:merlin/getGithubUsers.dart';
+import 'package:merlin/getLinkedInUsers.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
@@ -40,6 +43,27 @@ class SignInPage extends StatelessWidget {
                   );
             },
             child: Text("Sign Up"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ForgotPassword()));
+            },
+            child: Text("Forgot Password"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => GetLinkedInUsers()));
+            },
+            child: Text("LinkedIn User List"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => GetGithubUsers()));
+            },
+            child: Text("Github User List"),
           )
         ],
       ),
