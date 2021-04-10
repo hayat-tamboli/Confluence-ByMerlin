@@ -170,7 +170,7 @@ class SignInPage extends StatelessWidget {
                 children: [
                   AutoCompleteTextField(
                     style: TextStyle(fontSize: 16.0, color: Colors.black),
-                    clearOnSubmit: false,
+                    clearOnSubmit: true,
                     controller: _suggestionTextFieldController,
                     itemSubmitted: (item) {
                       _suggestionTextFieldController.text = item;
