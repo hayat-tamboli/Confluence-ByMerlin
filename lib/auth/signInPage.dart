@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:merlin/auth/registerPage.dart';
+import 'package:merlin/mainapp.dart';
 import 'package:merlin/services/authentication_service.dart';
 import 'package:merlin/auth/forgotPassword.dart';
 import 'package:merlin/getGithubUsers.dart';
@@ -189,10 +190,18 @@ class _SignInPageState extends State<SignInPage> {
                       PrimaryButton(
                         alt: false,
                         onTap: () {
-                          context.read<AuthenticationService>().signIn(
+                          context
+                              .read<AuthenticationService>()
+                              .signIn(
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim(),
-                              );
+                              )
+                              .then((value) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainApp()));
+                          });
                         },
                         text: "Sign in",
                       ),
