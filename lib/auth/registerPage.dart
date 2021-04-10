@@ -88,6 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               new AuthenticationService(_auth);
                           file
                               .signUp(
+                                name:nameController.text,
                                   email: emailController.text,
                                   password: passwordController.text)
                               .then((value) {
