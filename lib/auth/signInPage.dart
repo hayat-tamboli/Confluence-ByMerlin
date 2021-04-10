@@ -139,24 +139,43 @@ class _SignInPageState extends State<SignInPage> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 32),
-                InputBox(
-                  controller: emailController,
-                  labelText: "Email",
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    InputBox(
+                      controller: emailController,
+                      labelText: "Email",
+                    ),
+                    InputBox(
+                      labelText: "Password",
+                      hintText: "**********",
+                      obscureText: _passwordHide,
+                      controller: passwordController,
+                      sufIcon: IconButton(
+                        icon:
+                            Icon(_passwordHide ? Feather.eye : Feather.eye_off),
+                        onPressed: () {
+                          setState(() {
+                            _passwordHide = !_passwordHide;
+                          });
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: GestureDetector(
+                        child: Text("forgot password?"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ForgotPassword()));
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                InputBox(
-                  labelText: "Password",
-                  hintText: "**********",
-                  obscureText: _passwordHide,
-                  controller: passwordController,
-                  sufIcon: IconButton(
-                    icon: Icon(_passwordHide ? Feather.eye : Feather.eye_off),
-                    onPressed: () {
-                      setState(() {
-                        _passwordHide = !_passwordHide;
-                      });
-                    },
-                  ),
-                ),
+
                 SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
