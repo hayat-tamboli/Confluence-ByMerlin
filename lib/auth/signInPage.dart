@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:merlin/auth/forgotPassword.dart';
 import 'package:merlin/auth/registerPage.dart';
 import 'package:merlin/mainapp.dart';
 import 'package:merlin/services/authentication_service.dart';
