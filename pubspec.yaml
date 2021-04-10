@@ -27,6 +27,7 @@ dependencies:
   firebase_auth: ^1.0.3
   provider: ^5.0.0
   http: ^0.13.1
+  autocomplete_textfield: ^1.7.3
   cloud_firestore:
 
   #shared prefrences

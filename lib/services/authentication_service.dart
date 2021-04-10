@@ -23,18 +23,18 @@ class AuthenticationService {
     }
   }
 
-  Future<String> signUp({String email, String password}) async {
+  Future<String> signUp({String email, String password, String name}) async {
     try {
-      String hi = " ";
       final UserCredential authResult = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       final User user = authResult.user;
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
-          .set(UserProfile.newuser(user.uid, hi, user.email).toJson());
+          .set(UserProfile.newuser(user.uid, name, user.email).toJson());
+
       Constants.prefs.setString("userId", user.uid);
-      Constants.prefs.setString("name", user.displayName);
+      Constants.prefs.setString("name", name);
       return "Signed up";
     } on FirebaseAuthException catch (e) {
       return e.message;

@@ -36,22 +36,24 @@ ThemeData buildThemeData(BuildContext context) {
     // ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: Color(0xffEFF0F6),
-      hoverColor: Color(0xffEFF0F6),
+      fillColor: Colors.white,
       focusColor: Colors.white,
       enabledBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-        borderSide: BorderSide(color: Color(0x00000000)),
+        borderSide: BorderSide(color: Color(0xffD6D8E7), width: 2),
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-        borderSide: BorderSide(color: Color(0x00000000)),
+        borderSide: BorderSide(color: Color(0x00000000), width: 2),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-        borderSide: BorderSide(color: Colors.black),
+        borderSide: BorderSide(color: Color(0xff36C9C9), width: 2),
       ),
-      hintStyle: TextStyle(color: Color(0xffA0A3BD)),
+      hintStyle: TextStyle(
+        color: Color(0xffA0A3BD),
+        fontSize: 16,
+      ),
       labelStyle: TextStyle(
         color: Color(0xff6E7191),
         fontWeight: FontWeight.w500,
@@ -59,12 +61,13 @@ ThemeData buildThemeData(BuildContext context) {
       ),
     ),
     appBarTheme: AppBarTheme(
-      color: Colors.white,
+      color: Color(0xffFAFCFE),
+      elevation: 0,
       centerTitle: true,
       titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 48,
-        letterSpacing: 1,
+        letterSpacing: 1.5,
       ),
       iconTheme: IconThemeData(
         color: Colors.black,
