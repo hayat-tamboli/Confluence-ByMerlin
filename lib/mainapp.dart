@@ -20,7 +20,6 @@ class _MainAppState extends State<MainApp> {
   final List<Widget> _children = [
     HomePage(),
     // ChatPage(),
-    Container(),
     MessageList(),
     ProfilePage(),
   ];
