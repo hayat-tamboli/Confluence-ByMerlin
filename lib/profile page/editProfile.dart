@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:merlin/services/authentication_service.dart';
+import 'package:provider/provider.dart';
 
 class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          actions: [
+            GestureDetector(
+              child: Text("Sign Out"),
+              onTap: () {
+                context.read<AuthenticationService>().signOut();
+              },
+            ),
+          ],
           leading: GestureDetector(
               child: Icon(Icons.arrow_back_ios),
               onTap: () {
