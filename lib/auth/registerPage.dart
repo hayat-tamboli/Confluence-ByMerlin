@@ -19,7 +19,6 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   bool _passwordHide = true;
-  // String _userType = "hacker";
 
   void initState() {
     setState(() => _passwordHide = true);
@@ -71,34 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         },
                       ),
                     ),
-                    // ListTile(
-                    //   contentPadding: EdgeInsets.all(0),
-                    //   leading: Radio(
-                    //     value: 'hacker',
-                    //     groupValue: _userType,
-                    //     onChanged: (value) {
-                    //       setState(() {
-                    //         _userType = value;
-                    //       });
-                    //     },
-                    //   ),
-                    //   title:
-                    //       Text('Single Hacker', style: TextStyle(fontSize: 18)),
-                    // ),
-                    // ListTile(
-                    //   contentPadding: EdgeInsets.all(0),
-                    //   leading: Radio(
-                    //     value: 'recruiter',
-                    //     groupValue: _userType,
-                    //     onChanged: (value) {
-                    //       setState(() {
-                    //         _userType = value;
-                    //       });
-                    //     },
-                    //   ),
-                    //   title: Text('I have a small team',
-                    //       style: TextStyle(fontSize: 18)),
-                    // ),
+                    
                   ],
                 ),
                 SizedBox(height: 40),
