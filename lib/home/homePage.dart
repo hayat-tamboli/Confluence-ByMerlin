@@ -21,7 +21,10 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Container(
-        child: ListView.builder(
+        child: ListView.separated(
+          separatorBuilder: (_, index) {
+            return Divider();
+          },
           itemCount: 10,
           itemBuilder: (_, index) {
             return ListTile(
@@ -30,7 +33,10 @@ class _HomePageState extends State<HomePage> {
                     MaterialPageRoute(builder: (context) => HackDetailPage()));
               },
               contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-              leading: Image.asset("assets/auth page.png"),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset("assets/placeholder.png"),
+              ),
               title: Text("hackathon name"),
               subtitle: Text("12 april 2021"),
               trailing: Icon(Feather.chevron_right),
