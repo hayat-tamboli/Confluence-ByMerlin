@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:merlin/mainapp.dart';
+import 'package:merlin/widgets/primaryBtn.dart';
+
+import 'auth/registerPage.dart';
 
 class FilterChipDisplay extends StatefulWidget {
   @override
@@ -127,6 +131,15 @@ class _FilterChipDisplayState extends State<FilterChipDisplay> {
           Divider(
             color: Colors.blueGrey,
             height: 10.0,
+          ),
+          PrimaryButton(
+            text: "Submit",
+            onTap: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => MainApp()));
+            },
+            padding: 40,
+            alt: false,
           ),
         ],
       ),
