@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:merlin/services/authentication_service.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:merlin/auth/mainAuthPage.dart';
+import 'package:merlin/widgets/primaryBtn.dart';
 
 class EditProfile extends StatelessWidget {
   @override
@@ -25,16 +28,16 @@ class EditProfile extends StatelessWidget {
         child: Column(
           children: [
             CircleAvatar(
-              radius: 80.0,
+              radius: 64.0,
               child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.red,
                       borderRadius: BorderRadius.circular(100.0))),
+              backgroundImage: AssetImage("assets/placeholder.png"),
             ),
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Text(
                     "Name",
                     style: TextStyle(fontSize: 22.0),
@@ -56,7 +59,7 @@ class EditProfile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Icon(
-                      Icons.edit,
+                      Feather.edit,
                       size: 30.0,
                     ),
                   ),
@@ -67,7 +70,7 @@ class EditProfile extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Text(
                     "Graduation Year",
                     style: TextStyle(fontSize: 22.0),
@@ -89,7 +92,7 @@ class EditProfile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Icon(
-                      Icons.edit,
+                      Feather.edit,
                       size: 30.0,
                     ),
                   ),
@@ -100,7 +103,7 @@ class EditProfile extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Text(
                     "Skills",
                     style: TextStyle(fontSize: 22.0),
@@ -122,13 +125,15 @@ class EditProfile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Icon(
-                      Icons.edit,
+                      Feather.edit,
                       size: 30.0,
                     ),
                   ),
                 ],
               ),
-            )
+            ),
+            PrimaryButton(alt: true, text: "Log out", onTap: (){Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MainAuthPage()));})
           ],
         ),
       ),

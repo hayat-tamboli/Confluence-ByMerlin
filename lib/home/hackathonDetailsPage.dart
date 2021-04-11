@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:merlin/home/recruitment.dart';
+import 'package:merlin/services/hackathon_service.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
 
 class HackDetailPage extends StatefulWidget {
@@ -9,6 +11,8 @@ class HackDetailPage extends StatefulWidget {
 
 class _HackDetailPageState extends State<HackDetailPage> {
   String _userType = "hacker";
+  bool _registered = false;
+  String id = "0Sq0EcwQxA1KT53r2Eh4";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +38,7 @@ class _HackDetailPageState extends State<HackDetailPage> {
               SizedBox(height: 16),
               SingleChildScrollView(
                 child: Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                  "Lorem ipsum dolor sit amet, aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                   style: TextStyle(
                     letterSpacing: 1.3,
                   ),
@@ -80,8 +84,23 @@ class _HackDetailPageState extends State<HackDetailPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: PrimaryButton(
                   alt: false,
-                  text: "Register for this",
-                  onTap: () {},
+                  text: _registered ? "Registered" : "Register for this",
+                  color: _registered
+                      ? Color(0xff10D3A5)
+                      : Theme.of(context).primaryColor,
+                  onTap: () {
+                    if (_userType == "recruiter") {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RecruitmentPage()));
+                    } else {
+                      HackathonServices().addHackertoRoom(id);
+                      setState(() {
+                        _registered = true;
+                      });
+                    }
+                  },
                 ),
               ),
             ],
