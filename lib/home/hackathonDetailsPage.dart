@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:merlin/home/recruitment.dart';
+import 'package:merlin/services/hackathon_service.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
 
 class HackDetailPage extends StatefulWidget {
@@ -11,6 +12,7 @@ class HackDetailPage extends StatefulWidget {
 class _HackDetailPageState extends State<HackDetailPage> {
   String _userType = "hacker";
   bool _registered = false;
+  String id = "0Sq0EcwQxA1KT53r2Eh4";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,6 +95,7 @@ class _HackDetailPageState extends State<HackDetailPage> {
                           MaterialPageRoute(
                               builder: (context) => RecruitmentPage()));
                     } else {
+                      HackathonServices().addHackertoRoom(id);
                       setState(() {
                         _registered = true;
                       });
