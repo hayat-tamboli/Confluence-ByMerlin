@@ -29,6 +29,7 @@ dependencies:
   http: ^0.13.1
   autocomplete_textfield: ^1.7.3
   cloud_firestore:
+  flutter_tindercard: ^0.2.0
 
   url_launcher: 
   uni_links:  
