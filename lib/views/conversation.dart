@@ -132,26 +132,6 @@ class _ConversationState extends State<Conversation> {
             ],
           ),
         ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => ChatSchedule(
-              //       chatRoomId: widget.chatRoomId,
-              //       usersNames: widget.usersNames,
-              //       users: widget.users,
-              //     ),
-              //   ),
-              // );
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Icon(Icons.add_circle),
-            ),
-          )
-        ],
       ),
       body: Container(
         decoration: BoxDecoration(
