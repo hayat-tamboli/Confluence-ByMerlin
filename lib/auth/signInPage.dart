@@ -1,13 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:merlin/auth/forgotPassword.dart';
 import 'package:merlin/auth/registerPage.dart';
 import 'package:merlin/mainapp.dart';
+import 'package:merlin/models/secret_keys.dart';
+import 'package:merlin/services/authService.dart';
 import 'package:merlin/services/authentication_service.dart';
 import 'package:merlin/widgets/inputBox.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
 import 'package:provider/provider.dart';
+import 'package:uni_links/uni_links.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -17,88 +23,150 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   var _suggestionTextFieldController = TextEditingController();
 
-  List suggestionsList = [
-    "Java",
-    "C++",
-    "C",
-    "C++ 14",
-    "C++ 17",
-    "C99",
-    "C#",
-    "PHP",
-    "Perl",
-    "Ruby",
-    "Python2",
-    "Python3",
-    "SQL",
-    "Scala",
-    "VB.Net",
-    "Pascal",
-    "Haskell",
-    "Kotlin",
-    "Swift",
-    "Objective-C",
-    "Groovy",
-    "Fortran",
-    "Brainfuck",
-    "Hack",
-    "TCL",
-    "Lua",
-    "Rust",
-    "F#",
-    "Ada",
-    "D",
-    "Dart",
-    "YaBasic",
-    "Free Basic",
-    "Clojure",
-    "Verilog",
-    "NodeJS",
-    "Scheme",
-    "Forth",
-    "Prolog",
-    "Bash",
-    "COBOL",
-    "OCTAVE/ Matlab",
-    "Icon",
-    "CoffeeScript",
-    "Assembler (GCC)",
-    "R",
-    "Assembler (NASM)",
-    "Intercal",
-    "Nemerle",
-    "Ocaml",
-    "Unlambda",
-    "Picolisp",
-    "CLISP",
-    "Elixir",
-    "SpiderMonkey",
-    "Rhino JS",
-    "BC",
-    "Nim",
-    "Factor",
-    "Falcon",
-    "Fantom",
-    "Pike",
-    "Go",
-    "OZ-Mozart",
-    "LOLCODE",
-    "Racket",
-    "SmallTalk",
-    "Whitespace",
-    "Erlang",
-    "J Lang",
-    "isCobol",
-  ];
+  // List suggestionsList = [
+  //   "Java",
+  //   "C++",
+  //   "C",
+  //   "C++ 14",
+  //   "C++ 17",
+  //   "C99",
+  //   "C#",
+  //   "PHP",
+  //   "Perl",
+  //   "Ruby",
+  //   "Python2",
+  //   "Python3",
+  //   "SQL",
+  //   "Scala",
+  //   "VB.Net",
+  //   "Pascal",
+  //   "Haskell",
+  //   "Kotlin",
+  //   "Swift",
+  //   "Objective-C",
+  //   "Groovy",
+  //   "Fortran",
+  //   "Brainfuck",
+  //   "Hack",
+  //   "TCL",
+  //   "Lua",
+  //   "Rust",
+  //   "F#",
+  //   "Ada",
+  //   "D",
+  //   "Dart",
+  //   "YaBasic",
+  //   "Free Basic",
+  //   "Clojure",
+  //   "Verilog",
+  //   "NodeJS",
+  //   "Scheme",
+  //   "Forth",
+  //   "Prolog",
+  //   "Bash",
+  //   "COBOL",
+  //   "OCTAVE/ Matlab",
+  //   "Icon",
+  //   "CoffeeScript",
+  //   "Assembler (GCC)",
+  //   "R",
+  //   "Assembler (NASM)",
+  //   "Intercal",
+  //   "Nemerle",
+  //   "Ocaml",
+  //   "Unlambda",
+  //   "Picolisp",
+  //   "CLISP",
+  //   "Elixir",
+  //   "SpiderMonkey",
+  //   "Rhino JS",
+  //   "BC",
+  //   "Nim",
+  //   "Factor",
+  //   "Falcon",
+  //   "Fantom",
+  //   "Pike",
+  //   "Go",
+  //   "OZ-Mozart",
+  //   "LOLCODE",
+  //   "Racket",
+  //   "SmallTalk",
+  //   "Whitespace",
+  //   "Erlang",
+  //   "J Lang",
+  //   "isCobol",
+  // ];
+
+  StreamSubscription _subs;
+  bool loader;
+
+  @override
+  void initState() {
+    loader = false;
+    _initDeepLinkListener();
+    setState(() => _passwordHide = true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _disposeDeepLinkListener();
+    super.dispose();
+  }
+
+  void _initDeepLinkListener() async {
+    _subs = getLinksStream().listen((String link) {
+      _checkDeepLink(link);
+    }, cancelOnError: true);
+  }
+
+  void _checkDeepLink(String link) {
+    if (link != null) {
+      String code = link.substring(link.indexOf(RegExp('code=')) + 5);
+      AuthService().loginWithGitHub(code).then((firebaseUser) {
+        print(firebaseUser.email);
+        print(firebaseUser.photoURL);
+        print("LOGGED IN AS: " + firebaseUser.displayName);
+      }).catchError((e) {
+        print("LOGIN ERROR: " + e.toString());
+      });
+    }
+  }
+
+  void _disposeDeepLinkListener() {
+    if (_subs != null) {
+      _subs.cancel();
+      _subs = null;
+    }
+  }
+
+  void onClickGitHubLoginButton() async {
+    const String url = "https://github.com/login/oauth/authorize" +
+        "?client_id=" +
+        GITHUB_CLIENT_ID +
+        "&scope=public_repo%20read:user%20user:email";
+
+    if (await canLaunch(url)) {
+      setState(() {
+        loader = true;
+      });
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+      );
+    } else {
+      setState(() {
+        loader = false;
+      });
+      print("CANNOT LAUNCH THIS URL!");
+    }
+  }
 
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
   bool _passwordHide;
-  void initState() {
-    setState(() => _passwordHide = true);
-    super.initState();
-  }
 
   Future<String> createAlertDialog(BuildContext context) {
     TextEditingController customcontroller = TextEditingController();
@@ -203,10 +271,16 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       SizedBox(height: 16),
                       PrimaryButton(
-                        alt: false,
-                        text: "Continue with github",
-                        color: Color(0xff333333),
-                      ),
+                          alt: false,
+                          text: "Continue with github",
+                          color: Color(0xff333333),
+                          onTap: () async {
+                            onClickGitHubLoginButton;
+                            await Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainApp()));
+                          }),
                       SizedBox(height: 24),
                       RichText(
                         textAlign: TextAlign.center,
