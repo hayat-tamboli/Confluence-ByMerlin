@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:merlin/home/recruitment.dart';
 import 'package:merlin/services/hackathon_service.dart';
+import 'package:merlin/swipe.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
 
 class HackDetailPage extends StatefulWidget {
@@ -93,7 +94,7 @@ class _HackDetailPageState extends State<HackDetailPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => RecruitmentPage()));
+                              builder: (context) => SwipeCard()));
                     } else {
                       HackathonServices().addHackertoRoom(id);
                       setState(() {
