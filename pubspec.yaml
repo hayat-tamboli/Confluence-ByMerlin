@@ -30,6 +30,9 @@ dependencies:
   autocomplete_textfield: ^1.7.3
   cloud_firestore:
 
+  url_launcher: 
+  uni_links:  
+
   #shared prefrences
   shared_preferences:
 
