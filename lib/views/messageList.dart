@@ -103,54 +103,56 @@ class _MessageListState extends State<MessageList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: GestureDetector(
-              onTap: () {
-                showSearch(context: context, delegate: UserSearchDirect());
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).inputDecorationTheme.fillColor,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.search,
-                      color: Theme.of(context).iconTheme.color.withOpacity(0.5),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Search",
-                      style: TextStyle(
-                        color: Theme.of(context)
-                            .inputDecorationTheme
-                            .hintStyle
-                            .color,
-                        fontSize: 16,
+    return Scaffold(
+     body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: GestureDetector(
+                onTap: () {
+                  showSearch(context: context, delegate: UserSearchDirect());
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).inputDecorationTheme.fillColor,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.search,
+                        color: Theme.of(context).iconTheme.color.withOpacity(0.5),
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Search",
+                        style: TextStyle(
+                          color: Theme.of(context)
+                              .inputDecorationTheme
+                              .hintStyle
+                              .color,
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Stack(
-              children: <Widget>[getDirectChats()],
+            Expanded(
+              child: Stack(
+                children: <Widget>[getDirectChats()],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
