@@ -94,7 +94,7 @@ class _HackDetailPageState extends State<HackDetailPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SwipeCard()));
+                              builder: (context) => ExampleHomePage()));
                     } else {
                       HackathonServices().addHackertoRoom(id);
                       setState(() {

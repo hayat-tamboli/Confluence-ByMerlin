@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 
 import 'profile page/editProfile.dart';
+import 'views/conversation.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,6 +41,11 @@ class _ExampleHomePageState extends State<ExampleHomePage>
     CardController controller; //Use this to trigger swap.
 
     return new Scaffold(
+      appBar: AppBar(leading: GestureDetector(
+              child: Icon(Icons.arrow_back_ios),
+              onTap: () {
+                Navigator.pop(context);
+              })),
       body: new Center(
         child: Container(
           height: MediaQuery.of(context).size.height * 0.8,
@@ -63,8 +69,18 @@ class _ExampleHomePageState extends State<ExampleHomePage>
               if (align.x < 0) {
                 //Card is LEFT swiping
               } else if (align.x > 0) {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => EditProfile()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Conversation(
+                              chatRoomId:
+                                  "CZfNA6b3R0U7wJnuHk41BpENrSK2_JaQRJkBEjbhpAwHOGzGIfqcEg7D3",
+                              usersNames: ["Hayat", "Hayat"],
+                              users: [
+                                "CZfNA6b3R0U7wJnuHk41BpENrSK2",
+                                "JaQRJkBEjbhpAwHOGzGIfqcEg7D3"
+                              ],
+                            )));
                 //Card is RIGHT swiping
               }
             },
@@ -122,7 +138,7 @@ class SwipeCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: 100.0,
+                  width: 70.0,
                   child: Center(child: Text("Java")),
                   decoration: BoxDecoration(
                       color: Colors.grey,
@@ -138,7 +154,7 @@ class SwipeCard extends StatelessWidget {
                 ),
                 SizedBox(width: 10.0),
                 Container(
-                  width: 100.0,
+                  width: 70.0,
                   child: Center(child: Text("Flask")),
                   decoration: BoxDecoration(
                       color: Colors.grey[20],
@@ -150,7 +166,7 @@ class SwipeCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: 100.0,
+                  width: 70.0,
                   child: Center(child: Text("Flutter")),
                   decoration: BoxDecoration(
                       color: Colors.grey[20],
@@ -158,7 +174,7 @@ class SwipeCard extends StatelessWidget {
                 ),
                 SizedBox(width: 10.0),
                 Container(
-                  width: 100.0,
+                  width: 70.0,
                   child: Center(child: Text("Firebase")),
                   decoration: BoxDecoration(
                       color: Colors.grey[20],
@@ -166,7 +182,7 @@ class SwipeCard extends StatelessWidget {
                 ),
                 SizedBox(width: 10.0),
                 Container(
-                  width: 100.0,
+                  width: 70.0,
                   child: Center(child: Text("Javascript")),
                   decoration: BoxDecoration(
                       color: Colors.grey[20],
