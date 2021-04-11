@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:merlin/models/github_login_request.dart';
 import 'package:merlin/models/github_login_response.dart';
-import 'package:merlin/models/secret_keys.dart';
+import 'package:merlin/services/secret_keys.dart';
 
 class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
