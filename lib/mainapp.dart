@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merlin/profile%20page/profilePage.dart';
 import 'package:merlin/widgets/buildNavigation.dart';
 
 /*
@@ -17,10 +18,9 @@ class _MainAppState extends State<MainApp> {
   final List<Widget> _children = [
     // HomeScreen(),
     // ChatPage(),
-    // ProfilePage(),
     Container(),
     Container(),
-    Container(),
+    ProfilePage(),
   ];
 
   void onTabTapped(int index) {
