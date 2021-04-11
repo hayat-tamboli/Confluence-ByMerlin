@@ -5,6 +5,7 @@ import 'package:merlin/auth/forgotPassword.dart';
 import 'package:merlin/auth/registerPage.dart';
 import 'package:merlin/mainapp.dart';
 import 'package:merlin/services/authentication_service.dart';
+import 'package:merlin/utils/Constants.dart';
 import 'package:merlin/widgets/inputBox.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
 import 'package:provider/provider.dart';

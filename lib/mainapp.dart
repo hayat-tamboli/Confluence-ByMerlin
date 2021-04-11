@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merlin/home/homePage.dart';
 import 'package:merlin/profile%20page/profilePage.dart';
+import 'package:merlin/views/messageList.dart';
 import 'package:merlin/widgets/buildNavigation.dart';
 
 /*
@@ -20,6 +21,7 @@ class _MainAppState extends State<MainApp> {
     HomePage(),
     // ChatPage(),
     Container(),
+    MessageList(),
     ProfilePage(),
   ];
 
