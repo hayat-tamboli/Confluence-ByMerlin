@@ -187,6 +187,7 @@ class _SignInPageState extends State<SignInPage> {
                       PrimaryButton(
                         alt: false,
                         onTap: () {
+                          print("f");
                           context
                               .read<AuthenticationService>()
                               .signIn(
@@ -194,6 +195,7 @@ class _SignInPageState extends State<SignInPage> {
                                 password: passwordController.text.trim(),
                               )
                               .then((value) {
+                            print("ff");
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merlin/home/homePage.dart';
 import 'package:merlin/profile%20page/profilePage.dart';
 import 'package:merlin/views/messageList.dart';
 import 'package:merlin/widgets/buildNavigation.dart';
@@ -17,7 +18,7 @@ class _MainAppState extends State<MainApp> {
   final PageController _pageController = PageController(initialPage: 0);
   //add widgets of all relevant screens here
   final List<Widget> _children = [
-    // HomeScreen(),
+    HomePage(),
     // ChatPage(),
     Container(),
     MessageList(),
