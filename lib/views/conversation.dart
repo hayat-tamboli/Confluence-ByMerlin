@@ -48,10 +48,10 @@ class _ConversationState extends State<Conversation> {
             ? ListView.builder(
                 reverse: true,
                 controller: _controller,
-                itemCount: snapshot.data.documents.length,
+                itemCount: snapshot.data.docs.length,
                 itemBuilder: (context, index) {
                   Message data =
-                      new Message.fromJson(snapshot.data.documents[index]);
+                      new Message.fromJson(snapshot.data.docs[index]);
                   return MessageTile(
                     //decides who sent the message and accordingly aligns the text
                     message: data.message,
