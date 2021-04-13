@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:merlin/auth/signInPage.dart';
+import 'package:merlin/filterchip.dart';
 import 'package:merlin/services/authentication_service.dart';
 import 'package:merlin/widgets/inputBox.dart';
 import 'package:merlin/widgets/primaryBtn.dart';
@@ -96,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MainApp()));
+                                    builder: (context) => FilterChipDisplay()));
                           });
                         }
                       },

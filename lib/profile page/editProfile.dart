@@ -118,7 +118,7 @@ class EditProfile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
-                      "Hayat Tamboli",
+                      "C++ Java Flask",
                       style: TextStyle(),
                     ),
                   ),
@@ -132,8 +132,14 @@ class EditProfile extends StatelessWidget {
                 ],
               ),
             ),
-            PrimaryButton(alt: true, text: "Log out", onTap: (){Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MainAuthPage()));})
+            PrimaryButton(
+                alt: true,
+                text: "Log out",
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => MainAuthPage()));
+                  context.read<AuthenticationService>().signOut();
+                })
           ],
         ),
       ),
